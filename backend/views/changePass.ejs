@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        color: #475569;
+      }
+      body {
+        background-color: #f8f8f8;
+      }
+      .first {
+        width: 70%;
+        margin: 3rem auto;
+        display: flex;
+        background-color: white;
+        flex-direction: column;
+
+        padding: 2rem;
+        text-align: center;
+      }
+      .arrange {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        margin: 0 auto;
+      }
+      .txt {
+        margin: 30px 20px;
+        color: #475569;
+
+        /* color: #05386b; */
+      }
+      .frm {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .inp {
+        margin: 0.5rem 0;
+        padding: 0.4rem;
+        border: none;
+        border-bottom: 1px solid #475569;
+        outline: none;
+
+        font-size: medium;
+      }
+      .inp:focus {
+        outline: none;
+      }
+
+      #btn {
+        display: block;
+        padding: 0.8rem 2rem;
+        margin: 0 auto;
+        background-color: #475569;
+        color: #edf5e1;
+        border-radius: 20px;
+        border: none;
+        font-size: medium;
+      }
+      #btn:hover {
+        background-color: #838b95;
+      }
+      .not {
+        text-align: left;
+        font-size: larger;
+        color: #475569;
+
+        font-weight: bold;
+      }
+      .spe {
+        color: rgb(84, 84, 255);
+      }
+      #para {
+        color: red;
+        font-size: medium;
+      }
+      @media only screen and (max-width: 600px) {
+        .first {
+          width: 95%;
+          padding: 0;
+        }
+        .spe {
+          font-size: 1.4rem;
+        }
+        .arrange {
+          width: 80%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="first">
+      <h1 class="txt">
+        Reset Your Password For <span class="spe"><%=email%></span>
+      </h1>
+      <form class="frm" method="post" action="">
+        <div class="arrange">
+          <label class="not">New Password</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            id="password"
+            class="inp"
+          />
+        </div>
+        <div class="arrange">
+          <label class="not">Confirm New Password</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            id="confirmPassword"
+            placeholder="Confirm Password"
+            class="inp"
+          />
+        </div>
+        <div class="container">
+          <input type="submit" value="RESET" id="btn" />
+        </div>
+        <div>
+          <p id="para"></p>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      const form = document.querySelector(".frm");
+
+      const para = document.getElementById("para");
+
+      form.addEventListener("submit", (e) => {
+        const pass = document.getElementById("password").value;
+        const cpass = document.getElementById("confirmPassword").value;
+        if (pass !== cpass) {
+          para.textContent = "Passwords do not match";
+          event.preventDefault();
+        }
+      });
+    </script>
+  </body>
+</html>
