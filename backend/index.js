@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 var cookieParser = require("cookie-parser");
+const path = require("path");
 
 dotenv.config();
 
@@ -15,6 +16,13 @@ mongoose
   });
 
 const app = express();
+
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "/client/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
+
 // for parsing json data
 app.use(express.json());
 
@@ -45,6 +53,7 @@ app.use("/api/user", router);
 
 // idhr router me jo route banaye hai unhe call krna
 const signuproute = require("./routes/auth.route.js");
+const exp = require("constants");
 app.use("/api/auth", signuproute);
 
 // for handling all error we use here middlewre bss try catch k catch wale me next us krlo
