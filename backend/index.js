@@ -17,10 +17,10 @@ mongoose
 
 const app = express();
 
-const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, "/client/dist")));
+const name = path.resolve();
+app.use(express.static(path.join(name, "/client/dist")));
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+  res.sendFile(path.join(name, "client", "dist", "index.html"));
 });
 
 // for parsing json data
@@ -29,8 +29,6 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(express.urlencoded({ extended: true }));
-
-const path = require("path");
 
 app.set("views", path.join(__dirname, "views"));
 
